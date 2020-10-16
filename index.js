@@ -109,6 +109,14 @@ client.connect(err => {
             })
     })
 
+    app.post('/updateStatus', (req, res)=>{
+
+        submittedOrder.updateOne({"_id": ObjectId(req.body._id)},{$set: {"status": req.body.status}})
+            .then(result => {
+                res.send(result);
+            })
+    });
+
     // perform actions on the collection object
     //client.close();
 });
